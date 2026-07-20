@@ -63,11 +63,15 @@ vistazo dónde estás.
 - **Escanear**: cámara (`html5-qrcode`) + campo manual con el código `GLS-…`
   por si la cámara falla o el cliente trae la pantalla rota.
 - **Canjear**: teclear las 6 letras que dicta el cliente.
-- **Panel** (solo gerente): dos secciones en una sub-navegación.
+- **Historial** (pestaña propia, solo empleado raso): los tickets que dio y los
+  canjes que validó. Solo lo suyo.
+- **Panel** (solo gerente): tres secciones en una sub-navegación.
   - *Niveles*: crear, editar y quitar niveles. El campo de tickets es un selector
     de **4/6/9/12** (los que cierran en rejilla), no un número libre. La imagen se
     sube a Storage, recortada a 800×800 en el cliente antes de subir.
   - *Equipo*: quitar y devolver el permiso de escanear, agrupado por sucursal.
+  - *Historial*: la actividad de **todo** el personal de sus sucursales (otros
+    gerentes y él mismo incluidos), con quién hizo cada movimiento.
 - **Cuenta**: incluye **"Ver mi tarjeta"** — el personal también compra dulces en
   su día libre, y esa es la resolución honesta de que una persona sea las dos
   cosas.
@@ -459,6 +463,7 @@ Todas **existen y están probadas**. Todas en `SECURITY DEFINER` y
 | `nivel_actual` | interna | `(p_usuario_id, p_negocio_id) → niveles` |
 | `negocio_del_gerente` | interna | `() → uuid` (un negocio del gerente; para niveles/productos) |
 | `sucursales_del_gerente` | interna | `() → setof uuid` (las sucursales que maneja; acota `desactivar/reactivar_empleado`) |
+| `historial_personal` | empleado / gerente | `(p_limite int) → setof (tipo, ocurrido_en, cliente, empleado, sucursal, detalle)` |
 | `crear_perfil_al_registrarse` | trigger | `()` en `auth.users`: crea el perfil cliente + código `GLS-` |
 
 > **Fíjate en lo que NO recibe ninguna: quién es el empleado.** Eso sale siempre
@@ -525,6 +530,29 @@ canjes viejos siguen apuntando a la fila antigua y siguen diciendo la verdad.
 
 `dar_de_baja_nivel` se niega a quitar el último: sin niveles, `nivel_actual` no
 devuelve nada y el rompecabezas se queda sin premio que mostrar.
+
+### `historial_personal(p_limite)` — por qué es función y no política RLS
+
+Devuelve la actividad del personal (tickets otorgados + canjes validados), y
+**decide su propio alcance** según quién llama: un empleado raso ve solo lo
+suyo; un gerente ve el de todo el personal de sus sucursales.
+
+Fue tentador resolverlo con políticas RLS nuevas, pero habría sido peor:
+
+- La RLS de `tickets`/`canjes` responde *"lo mío como **cliente**"*
+  (`usuario_id = auth.uid()`). Esto es otra pregunta: *"lo que yo hice como
+  **empleado**"* (`empleado_id`). Un empleado consultando por `empleado_id`
+  recibía **cero filas**.
+- El historial necesita el **nombre del cliente**, que vive en `perfiles` y está
+  cerrado con `perfiles_propio`. Abrirlo con una política daría a todo el
+  personal acceso a perfiles mucho más allá de lo necesario.
+
+La función expone exactamente las filas que corresponden y nada más.
+
+> ⚠️ **Ampliación de privacidad, consciente:** el personal pasa a ver el nombre
+> de los clientes que atendió, y el gerente el de todos los atendidos en sus
+> sucursales. Es defendible (el cajero vio a la persona en la caja) y es lo que
+> habilita el reporte antifraude. Pero es acceso nuevo: tenlo presente.
 
 ### El alta es automática
 
@@ -749,7 +777,7 @@ que **nadie puede quedar sin perfil ni sin código**.
 
 ## 13. Migraciones aplicadas (en orden)
 
-La verdad de lo que existe en la base. 17 migraciones:
+La verdad de lo que existe en la base. 18 migraciones:
 
 1. `esquema_inicial` — 10 tablas base, índice de un-ticket-por-día
 2. `politicas_rls` — RLS: leer lo propio, escribir nunca
@@ -768,3 +796,4 @@ La verdad de lo que existe en la base. 17 migraciones:
 15. `realtime_tickets_canjes` — publicación Realtime
 16. `tickets_replica_identity_full` — para el UPDATE de canje en vivo
 17. `realtime_empleados` — cambio de rol en vivo (empleado → cliente)
+18. `historial_del_personal` — `historial_personal()`, con alcance por rol

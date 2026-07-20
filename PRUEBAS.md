@@ -116,7 +116,25 @@ having count(t.ticket_id) <> n.tickets_necesarios;
 -- esperado: 0 filas (si sale algo, hay un canje corrupto)
 ```
 
-### A6. Integridad estructural (una sola corrida, sin suplantar)
+### A6. El historial respeta el alcance de cada rol
+
+Ejecuta **tres corridas separadas** (una por persona, cambiando el correo en
+A1) y compara:
+
+```sql
+select count(*) as filas, string_agg(distinct empleado, ', ') as visibles
+from historial_personal(60);
+```
+
+| Quién | Esperado |
+|---|---|
+| `sofia@correo.com` (empleada) | Solo `Sofía Cajera` |
+| `luis@correo.com` (gerente) | Todo el personal de Centro + Zona Rosa, él incluido |
+| `ana@correo.com` (clienta) | **0 filas** |
+
+Si Sofía ve a alguien más que a sí misma, o Ana ve algo, es un hallazgo grave.
+
+### A7. Integridad estructural (una sola corrida, sin suplantar)
 
 ```sql
 select 'RLS activa en todo' as chequeo,
@@ -148,7 +166,7 @@ select 'ningún contador guardado (columna que huela a saldo)',
 
 Esperado: **todo `true`**.
 
-### A7. El historial no miente (la prueba de la filosofía)
+### A8. El historial de canjes no miente (la prueba de la filosofía)
 
 ```sql
 -- Los canjes apuntan a niveles que pueden estar "de baja", y eso es CORRECTO:
