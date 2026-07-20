@@ -308,6 +308,17 @@ export type Database = {
       dar_de_baja_nivel: { Args: { p_orden: number }; Returns: Json }
       desactivar_empleado: { Args: { p_empleado_id: string }; Returns: Json }
       generar_codigo_canje: { Args: { p_negocio_id: string }; Returns: Json }
+      historial_personal: {
+        Args: { p_limite?: number }
+        Returns: {
+          tipo: string
+          ocurrido_en: string
+          cliente: string | null
+          empleado: string
+          sucursal: string
+          detalle: string | null
+        }[]
+      }
       negocio_del_gerente: { Args: never; Returns: string }
       otorgar_ticket: { Args: { p_codigo_usuario: string }; Returns: Json }
       reactivar_empleado: { Args: { p_empleado_id: string }; Returns: Json }

@@ -3,12 +3,15 @@ import { Escaner } from './pantallas/empleado/Escaner'
 import { Validar } from './pantallas/empleado/Validar'
 import { Equipo } from './pantallas/empleado/Equipo'
 import { Niveles } from './pantallas/empleado/Niveles'
+import { Historial } from './pantallas/empleado/Historial'
 import { supabase } from './supabase/cliente'
 import type { Empleado } from './supabase/api'
 import './pantallas/empleado/Empleado.css'
 
-type Vista = 'escanear' | 'canjear' | 'panel' | 'cuenta'
-type SeccionPanel = 'niveles' | 'equipo'
+// El empleado raso tiene Historial como pestaña propia; el gerente lo lleva
+// dentro de Panel, junto a Niveles y Equipo, para no acumular pestañas.
+type Vista = 'escanear' | 'canjear' | 'panel' | 'historial' | 'cuenta'
+type SeccionPanel = 'niveles' | 'equipo' | 'historial'
 
 function IconoCamara({ activo }: { activo?: boolean }) {
   return (
@@ -102,6 +105,29 @@ function IconoPanel({ activo }: { activo?: boolean }) {
   )
 }
 
+function IconoHistorial({ activo }: { activo?: boolean }) {
+  return (
+    <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+      <circle
+        cx="12"
+        cy="12"
+        r="8.5"
+        fill={activo ? 'currentColor' : 'none'}
+        stroke="currentColor"
+        strokeWidth="1.8"
+      />
+      <path
+        d="M12 7.2V12l3.2 2"
+        fill="none"
+        stroke={activo ? 'var(--papel)' : 'currentColor'}
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
 function IconoCuenta({ activo }: { activo?: boolean }) {
   return (
     <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
@@ -141,7 +167,7 @@ export function AppEmpleado({ empleado, negocioId, alVerComoCliente }: Props) {
     { id: 'canjear', etiqueta: 'Canjear', Icono: IconoTeclado },
     ...(esGerente
       ? [{ id: 'panel' as Vista, etiqueta: 'Panel', Icono: IconoPanel }]
-      : []),
+      : [{ id: 'historial' as Vista, etiqueta: 'Historial', Icono: IconoHistorial }]),
     { id: 'cuenta', etiqueta: 'Cuenta', Icono: IconoCuenta },
   ]
 
@@ -169,11 +195,19 @@ export function AppEmpleado({ empleado, negocioId, alVerComoCliente }: Props) {
               >
                 Equipo
               </button>
+              <button
+                className={`panel-nav__tab ${seccion === 'historial' ? 'panel-nav__tab--activa' : ''}`}
+                onClick={() => setSeccion('historial')}
+              >
+                Historial
+              </button>
             </div>
             {seccion === 'niveles' && <Niveles negocioId={negocioId} />}
             {seccion === 'equipo' && <Equipo yo={empleado} />}
+            {seccion === 'historial' && <Historial esGerente />}
           </>
         )}
+        {vista === 'historial' && !esGerente && <Historial esGerente={false} />}
         {vista === 'cuenta' && (
           <div className="pantalla">
             <header className="cabecera">

@@ -319,6 +319,29 @@ export async function verificarContrasena(clave: string): Promise<boolean> {
   return !error
 }
 
+export interface MovimientoPersonal {
+  tipo: 'ticket' | 'canje'
+  ocurrido_en: string
+  cliente: string | null
+  empleado: string
+  sucursal: string
+  /** Nombre del premio, solo en los canjes. */
+  detalle: string | null
+}
+
+/**
+ * Historial de actividad del personal. La función de la base decide el alcance
+ * según quién llama: un empleado ve solo lo suyo; un gerente, el de todo el
+ * personal de sus sucursales. Un cliente recibe lista vacía.
+ */
+export async function cargarHistorialPersonal(): Promise<MovimientoPersonal[]> {
+  const { data, error } = await supabase.rpc('historial_personal', {
+    p_limite: 60,
+  })
+  if (error) throw error
+  return (data ?? []) as MovimientoPersonal[]
+}
+
 export interface RespuestaEquipo {
   resultado: 'desactivado' | 'reactivado' | 'error'
   empleado?: string
