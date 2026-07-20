@@ -1,20 +1,54 @@
 :root {
-  /* Paleta */
-  --rosa: #e23e6b;
-  --rosa-oscuro: #be2951;
-  --rosa-claro: #ff8fb1;
-  --rosa-tenue: #ffe8ee;
-  --caramelo: #ef8f2e;
-  --menta: #34a98a;
-  --crema: #fff9f2;
-  --papel: #ffffff;
-  --tinta: #3a2a2e;
-  --tinta-suave: #8a7379;
-  --borde: #f2e2e6;
+  /* Paleta — tema líquido "MunchLab": fucsia + aqua sobre un fondo morado→teal,
+     con las tarjetas claras (así el contenido se lee y las tarjetas flotan como
+     burbujas beige sobre el degradado, igual que en Tema-9). */
+  --fucsia: #d92fd0; /* acento principal (el "Lab" de MunchLab) */
+  --fucsia-oscuro: #a81f9f;
+  --fucsia-claro: #ff8bf0;
+  --fucsia-tenue: #fbe6fb;
+  --aqua: #2bb8e6; /* acento secundario, legible sobre blanco (el "Munch") */
+  --aqua-brillo: #60d8fd; /* aqua para brillos/auras sobre el morado */
+  --caramelo: #f0a72e;
+  --menta: #12b39a;
 
-  --sombra-baja: 0 1px 2px rgb(58 42 46 / 0.06), 0 2px 8px rgb(58 42 46 / 0.05);
-  --sombra-media: 0 4px 16px rgb(58 42 46 / 0.1);
-  --sombra-alta: 0 12px 32px rgb(58 42 46 / 0.16);
+  /* Las 9 pantallas ya usan --rosa*: las remapeo a la fucsia en vez de tocar
+     cada archivo. Cambiar el color aquí retiñe toda la app de una vez. */
+  --rosa: var(--fucsia);
+  --rosa-oscuro: var(--fucsia-oscuro);
+  --rosa-claro: var(--fucsia-claro);
+  --rosa-tenue: var(--fucsia-tenue);
+
+  --crema: #fff6ec;
+  --papel: #ffffff;
+  --tinta: #2a1a3a; /* texto oscuro en tarjetas, con matiz violáceo */
+  --tinta-suave: #7c6f88;
+  --borde: #efe3f2;
+
+  --sombra-baja: 0 1px 2px rgb(18 4 40 / 0.1), 0 3px 12px rgb(18 4 40 / 0.1);
+  --sombra-media: 0 6px 20px rgb(18 4 40 / 0.18);
+  --sombra-alta: 0 16px 40px rgb(18 4 40 / 0.3);
+
+  /* Fondo líquido de la app, en DOS capas como en Tema-9 (que sobre el degradado
+     monta un SVG para darle "otra visualización"):
+       1. abajo, el degradado base morado → teal;
+       2. encima, una capa de manchas de luz (fucsia/aqua/teal/violeta) que le da
+          profundidad tipo aurora líquida.
+     Aquí la capa de efecto son radial-gradients apilados en el mismo `background`
+     (van ANTES del linear en la lista = quedan encima), en vez del SVG externo:
+     mismo resultado, pero sin depender de una URL que puede caerse. Todo estático:
+     sin animación ni burbujas en movimiento. */
+  --fondo-app:
+    radial-gradient(40% 32% at 14% 8%, rgb(217 47 208 / 0.42), transparent 70%),
+    radial-gradient(44% 34% at 90% 16%, rgb(96 216 253 / 0.3), transparent 72%),
+    radial-gradient(60% 44% at 50% 112%, rgb(18 200 170 / 0.45), transparent 72%),
+    radial-gradient(42% 36% at 82% 70%, rgb(128 34 156 / 0.4), transparent 70%),
+    linear-gradient(
+      165deg,
+      #190636 0%,
+      #331069 42%,
+      #123c66 76%,
+      #0c4f4c 100%
+    );
 
   --radio: 14px;
   --radio-grande: 22px;
@@ -41,7 +75,7 @@
 
 body {
   min-height: 100dvh;
-  background: #f0e4e7;
+  background: #140630;
   line-height: 1.45;
 }
 

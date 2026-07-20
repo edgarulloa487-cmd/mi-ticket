@@ -10,29 +10,45 @@
 .app {
   width: 100%;
   max-width: 430px;
+  height: 100dvh;
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  background: var(--crema);
+  background: var(--fondo-app);
   position: relative;
+  /* Contiene el desborde de la burbuja líquida de los tabs (su capa borrosa se
+     extiende un poco fuera del marco); sin esto, escapaba a las esquinas. */
+  overflow: hidden;
 }
 
 @media (min-width: 480px) {
   .app {
-    box-shadow: 0 0 60px rgb(58 42 46 / 0.14);
+    box-shadow: 0 0 80px rgb(0 0 0 / 0.5);
   }
 }
 
-.app__vista {
+.app__plano {
   flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.app__vista {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  min-height: 0;
   overflow-y: auto;
 }
 
 .pantalla {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  padding: 16px 16px 26px;
+  /* Hueco chico: los blobs líquidos se acercan y el contrast los fusiona. */
+  gap: 24px;
+  padding: 16px 16px 12px;
   animation: entrar-pantalla 0.28s ease-out;
 }
 
@@ -52,7 +68,7 @@
   gap: 12px;
   padding: 40px 24px;
   min-height: 60dvh;
-  color: var(--tinta-suave);
+  color: rgb(255 255 255 / 0.82);
   font-size: 14px;
   text-align: center;
 }
@@ -63,7 +79,7 @@
   position: absolute;
   left: 12px;
   right: 12px;
-  bottom: calc(var(--alto-tabs) + 12px + env(safe-area-inset-bottom));
+  bottom: calc(var(--alto-tabs) + 20px + env(safe-area-inset-bottom));
   z-index: 20;
   padding: 13px 16px;
   border-radius: var(--radio);
@@ -88,34 +104,81 @@
   padding: 6px 2px 0;
 }
 
+/* Los títulos van directo sobre el fondo morado, así que son claros. Un leve
+   halo los despega del degradado sin sombra dura. */
 .cabecera__titulo {
   font-size: 25px;
   letter-spacing: -0.4px;
+  color: #fff;
+  text-shadow: 0 1px 14px rgb(0 0 0 / 0.28);
 }
 
 .cabecera__sub {
   margin-top: 3px;
   font-size: 13px;
-  color: var(--tinta-suave);
+  color: rgb(255 255 255 / 0.74);
 }
 
+/* Carta glass / glossy: muy translúcida. Texto claro (--tinta*) para leerse
+   sobre el degradado oscuro que se ve a través. */
 .tarjeta {
-  background: var(--papel);
+  --glass-bg: rgb(255 255 255 / 0.07);
+  --glass-borde: rgb(255 255 255 / 0.28);
+  --tinta: #ffffff;
+  --tinta-suave: rgb(255 255 255 / 0.78);
+  position: relative;
+  z-index: 0;
+  isolation: isolate;
+  overflow: hidden;
+  color: var(--tinta);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-borde);
   border-radius: var(--radio-grande);
-  padding: 16px;
-  box-shadow: var(--sombra-baja);
+  padding: 28px 24px;
+  box-shadow: 0 8px 22px rgb(8 2 26 / 0.18);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+}
+
+/* Brillo glossy muy suave (sin línea blanca tipo rim light). */
+.tarjeta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    160deg,
+    rgb(255 255 255 / 0.1) 0%,
+    transparent 42%
+  );
+  pointer-events: none;
+}
+
+.tarjeta > * {
+  position: relative;
+  z-index: 1;
 }
 
 .tarjeta__titulo {
   display: flex;
   align-items: center;
-  gap: 7px;
-  font-size: 15px;
-  margin-bottom: 9px;
+  gap: 6px;
+  font-size: 13.5px;
+  margin-bottom: 7px;
 }
 
 .tarjeta__titulo svg {
   color: var(--rosa);
+  width: 16px;
+  height: 16px;
+}
+
+/* Botones dentro de cartas: más compactos que el botón “suelto”. */
+.tarjeta .boton {
+  padding: 8px 11px;
+  font-size: 12.5px;
+  gap: 5px;
 }
 
 .boton {
@@ -141,7 +204,7 @@
 .boton--principal {
   background: var(--rosa);
   color: #fff;
-  box-shadow: 0 3px 12px rgb(226 62 107 / 0.34);
+  box-shadow: 0 3px 12px rgb(217 47 208 / 0.34);
 }
 
 .boton--principal:hover {
@@ -159,11 +222,11 @@
 
 .boton--texto {
   align-self: center;
-  color: var(--tinta-suave);
+  color: rgb(255 255 255 / 0.7);
   font-size: 13px;
   padding: 8px;
 }
 
 .boton--texto:hover {
-  color: var(--rosa);
+  color: #fff;
 }

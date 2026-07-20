@@ -29,6 +29,11 @@ interface Props {
 export function BarraTabs({ activa, alCambiar, tickets }: Props) {
   return (
     <nav className="tabs" aria-label="Navegación principal">
+      {/* La forma líquida real (blur + contrast, como .contenedor-efecto-parte-uno
+          en Tema-9). Va en un div propio, no en el fondo de .tabs, porque el
+          filter: contrast() de acá adentro NO debe tocar los iconos/etiquetas
+          nítidos de los botones. */}
+      <div className="tabs__burbuja" aria-hidden="true" />
       {PESTANAS.map(({ id, etiqueta, Icono }) => {
         const esActiva = id === activa
         return (
