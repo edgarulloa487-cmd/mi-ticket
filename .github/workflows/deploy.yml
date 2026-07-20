@@ -1,0 +1,46 @@
+name: Desplegar a GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      # Estas dos son la URL del proyecto y la publishable key: seguras de
+      # exponer en el cliente, protegidas por RLS y no por secreto (ver
+      # .env.example). Por eso van directas aquí, no como GitHub Secrets.
+      - run: npm run build
+        env:
+          VITE_SUPABASE_URL: https://swhnivuutklvolavgzdu.supabase.co
+          VITE_SUPABASE_PUBLISHABLE_KEY: sb_publishable_4wx9cqxfy7Tbd-Nb4u8NRw_83B5qjkX
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
