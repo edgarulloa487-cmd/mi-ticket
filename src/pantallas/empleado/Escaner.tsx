@@ -55,14 +55,22 @@ export function Escaner() {
         setTimeout(() => (ultimo.current = ''), 2500)
       },
       () => {},
-    ).catch(() => {
-      if (vivo) {
-        setRes({
-          resultado: 'error',
-          mensaje: 'No se pudo abrir la cámara. Usa el código de abajo.',
-        })
-        setActivo(false)
-      }
+    ).catch((err: unknown) => {
+      if (!vivo) return
+      // El mensaje real importa: "permiso denegado" y "sin cámara" se arreglan
+      // distinto, y antes se perdían dentro de un catch mudo.
+      const texto = err instanceof Error ? err.message : String(err)
+      const permisoDenegado = /permission|denied|NotAllowed/i.test(texto)
+      const sinCamara = /NotFound|no camera|devices/i.test(texto)
+      setRes({
+        resultado: 'error',
+        mensaje: permisoDenegado
+          ? 'Bloqueaste el permiso de cámara para este sitio. Actívalo en los ajustes del navegador y vuelve a intentar.'
+          : sinCamara
+            ? 'Este dispositivo no tiene cámara disponible. Usa el código de abajo.'
+            : `No se pudo abrir la cámara (${texto}). Usa el código de abajo.`,
+      })
+      setActivo(false)
     })
 
     return () => {
