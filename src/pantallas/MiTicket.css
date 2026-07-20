@@ -1,0 +1,400 @@
+.premio {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+  text-align: center;
+  transition: box-shadow 0.5s ease;
+}
+
+.premio--completo {
+  box-shadow: var(--sombra-media), 0 0 0 2px var(--rosa-claro);
+}
+
+/* --- Rompecabezas --- */
+
+.rompecabezas {
+  position: relative;
+  width: 100%;
+  max-width: 290px;
+  aspect-ratio: 1;
+  border-radius: var(--radio-grande);
+  overflow: hidden;
+  background: var(--crema);
+  isolation: isolate;
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.rompecabezas--completo {
+  animation: latido-premio 0.7s ease-out 0.25s;
+}
+
+/* Imagen completa del premio, atenuada: es la silueta de lo que falta. */
+.rompecabezas__fondo {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.16;
+  filter: grayscale(1);
+}
+
+.rompecabezas__rejilla {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 6px;
+  transition: gap 0.55s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* Al completar, las piezas se juntan y la imagen queda entera. */
+.rompecabezas--completo .rompecabezas__rejilla {
+  gap: 0;
+}
+
+.pieza {
+  position: relative;
+  border-radius: 10px;
+  background-size: 200% 200%;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transform: scale(0.55) rotate(-8deg);
+  transition:
+    opacity 0.45s ease,
+    transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+    border-radius 0.55s ease;
+}
+
+.pieza:nth-child(1) {
+  background-position: 0% 0%;
+}
+.pieza:nth-child(2) {
+  background-position: 100% 0%;
+}
+.pieza:nth-child(3) {
+  background-position: 0% 100%;
+}
+.pieza:nth-child(4) {
+  background-position: 100% 100%;
+}
+
+.pieza--revelada {
+  opacity: 1;
+  transform: none;
+  box-shadow: 0 2px 10px rgb(58 42 46 / 0.16);
+}
+
+.rompecabezas--completo .pieza {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* Pieza recién ganada en vivo: latido que se repite 3 veces (~1,8 s total) para
+   que el cliente alcance a ver el cambio. */
+.pieza--festejada {
+  animation: latido-pieza 0.6s ease-in-out 3;
+  z-index: 2;
+}
+
+@keyframes latido-pieza {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 2px 10px rgb(58 42 46 / 0.16);
+  }
+  50% {
+    transform: scale(1.12);
+    box-shadow: 0 6px 20px rgb(226 62 107 / 0.5);
+  }
+}
+
+/* Destello que recorre la pieza recién revelada */
+.pieza--revelada::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    115deg,
+    transparent 35%,
+    rgb(255 255 255 / 0.75) 50%,
+    transparent 65%
+  );
+  animation: destello 0.75s ease-out 0.15s both;
+}
+
+@keyframes destello {
+  from {
+    opacity: 1;
+    transform: translateX(-110%);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(110%);
+  }
+}
+
+@keyframes latido-premio {
+  0% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* --- Confeti --- */
+
+.confeti {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.confeti__pieza {
+  position: absolute;
+  top: -12px;
+  width: 8px;
+  height: 12px;
+  border-radius: 2px;
+  animation-name: caer-confeti;
+  animation-timing-function: cubic-bezier(0.3, 0.5, 0.6, 1);
+  animation-fill-mode: both;
+}
+
+@keyframes caer-confeti {
+  0% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(300px) rotate(420deg);
+  }
+}
+
+/* --- Info y progreso --- */
+
+.premio__nombre {
+  font-size: 18px;
+}
+
+.premio__descripcion {
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--tinta-suave);
+}
+
+.progreso {
+  width: 100%;
+}
+
+.progreso__pista {
+  height: 9px;
+  border-radius: 999px;
+  background: var(--rosa-tenue);
+  overflow: hidden;
+}
+
+.progreso__barra {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--rosa-claro), var(--rosa));
+  transition: width 0.55s cubic-bezier(0.34, 1.3, 0.64, 1);
+}
+
+.progreso__texto {
+  margin-top: 7px;
+  font-size: 13px;
+  color: var(--tinta-suave);
+}
+
+.progreso__texto strong {
+  color: var(--rosa);
+  font-size: 15px;
+}
+
+.premio__aviso {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: var(--radio);
+  background: var(--rosa-tenue);
+  color: var(--rosa-oscuro);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.premio__aviso--espera {
+  background: #f4eef0;
+  color: var(--tinta-suave);
+}
+
+.premio__aviso--listo {
+  background: linear-gradient(90deg, var(--rosa), var(--rosa-oscuro));
+  color: #fff;
+}
+
+.progreso__extra {
+  color: var(--caramelo);
+  font-weight: 600;
+}
+
+.premio__canjear {
+  width: 100%;
+}
+
+/* --- Codigo de canje --- */
+
+.codigo {
+  width: 100%;
+  padding: 14px;
+  border-radius: var(--radio);
+  background: linear-gradient(135deg, var(--rosa), var(--rosa-oscuro));
+  color: #fff;
+  text-align: center;
+}
+
+.codigo__ayuda {
+  font-size: 11.5px;
+  font-weight: 600;
+  opacity: 0.9;
+  letter-spacing: 0.3px;
+}
+
+.codigo__valor {
+  margin: 5px 0 3px;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-indent: 5px;
+}
+
+.codigo__cuenta {
+  font-size: 11.5px;
+  font-weight: 600;
+  opacity: 0.85;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Adelanto del siguiente nivel --- */
+/* Visible siempre, sin deslizar: ver el siguiente escalon es la mitad de la
+   motivacion de una escalera, y un slider en movil se descubre poco. */
+
+.siguiente {
+  padding: 13px 14px;
+}
+
+.siguiente__etiqueta {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+  margin-bottom: 8px;
+}
+
+.siguiente__fila {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.siguiente__mini {
+  flex: none;
+  width: 46px;
+  height: 46px;
+  border-radius: 11px;
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(0.75);
+  opacity: 0.72;
+}
+
+.siguiente__nombre {
+  font-size: 14px;
+}
+
+.siguiente__meta {
+  font-size: 12px;
+  color: var(--tinta-suave);
+}
+
+/* --- Pasos --- */
+
+.pasos {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.pasos__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13.5px;
+  color: var(--tinta-suave);
+}
+
+.pasos__num {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--rosa-tenue);
+  color: var(--rosa);
+  font-size: 12px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+
+/* --- Panel de demostración --- */
+
+.demo {
+  padding: 13px;
+  border: 1.5px dashed #d8c4c9;
+  border-radius: var(--radio);
+  background: rgb(255 255 255 / 0.5);
+}
+
+.demo__titulo {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+}
+
+.demo__nota {
+  margin-top: 3px;
+  font-size: 11.5px;
+  line-height: 1.35;
+  color: var(--tinta-suave);
+}
+
+.demo__botones {
+  display: flex;
+  gap: 7px;
+  margin-top: 10px;
+}
+
+.demo__botones .boton {
+  flex: 1;
+  padding: 9px 4px;
+  font-size: 12.5px;
+}
+
+.demo__botones .boton:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+}

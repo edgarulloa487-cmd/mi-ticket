@@ -1,0 +1,101 @@
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <!--
+    Ilustración del premio. La composición es centrada y con confeti en las
+    cuatro esquinas a propósito: cada cuadrante del rompecabezas debe tener
+    contenido reconocible aunque los demás sigan ocultos.
+  -->
+  <defs>
+    <radialGradient id="fondo" cx="50%" cy="42%" r="75%">
+      <stop offset="0%" stop-color="#FFF9F2"/>
+      <stop offset="55%" stop-color="#FFE8EE"/>
+      <stop offset="100%" stop-color="#FFD0DE"/>
+    </radialGradient>
+    <linearGradient id="cabezaPaleta" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FF7EAB"/>
+      <stop offset="55%" stop-color="#E23E6B"/>
+      <stop offset="100%" stop-color="#BE2951"/>
+    </linearGradient>
+    <linearGradient id="bolsa" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F9BE79"/>
+      <stop offset="100%" stop-color="#DC8437"/>
+    </linearGradient>
+    <linearGradient id="choco" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#96603F"/>
+      <stop offset="100%" stop-color="#573523"/>
+    </linearGradient>
+    <linearGradient id="palo" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FFF6E9"/>
+      <stop offset="100%" stop-color="#E8D2B4"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="400" height="400" fill="url(#fondo)"/>
+
+  <!-- Confeti: reparte color por los cuatro cuadrantes -->
+  <g opacity=".5">
+    <circle cx="46" cy="54" r="7" fill="#4FC3A1"/>
+    <circle cx="86" cy="106" r="4" fill="#F7B267"/>
+    <rect x="30" y="140" width="13" height="6" rx="3" fill="#E23E6B" transform="rotate(-24 36 143)"/>
+    <circle cx="356" cy="48" r="6" fill="#F7B267"/>
+    <circle cx="318" cy="98" r="4" fill="#4FC3A1"/>
+    <rect x="352" y="136" width="13" height="6" rx="3" fill="#7B5BC4" transform="rotate(28 358 139)"/>
+    <circle cx="42" cy="322" r="5" fill="#7B5BC4"/>
+    <rect x="66" y="368" width="14" height="6" rx="3" fill="#4FC3A1" transform="rotate(18 73 371)"/>
+    <circle cx="360" cy="330" r="6" fill="#E23E6B"/>
+    <rect x="322" y="366" width="14" height="6" rx="3" fill="#F7B267" transform="rotate(-16 329 369)"/>
+  </g>
+
+  <!-- Barra de chocolate (cuadrante inferior izquierdo) -->
+  <g transform="rotate(-16 104 268)">
+    <rect x="60" y="232" width="88" height="112" rx="9" fill="url(#choco)"/>
+    <g opacity=".28" fill="#FFF1DC">
+      <rect x="70" y="242" width="30" height="42" rx="4"/>
+      <rect x="108" y="242" width="30" height="42" rx="4"/>
+      <rect x="70" y="292" width="30" height="42" rx="4"/>
+      <rect x="108" y="292" width="30" height="42" rx="4"/>
+    </g>
+  </g>
+
+  <!-- Caramelo envuelto (cuadrante inferior derecho) -->
+  <g transform="rotate(20 300 288)">
+    <path d="M270 288 l-24 -19 v38 z" fill="#8FE0C6"/>
+    <path d="M330 288 l24 -19 v38 z" fill="#8FE0C6"/>
+    <circle cx="300" cy="288" r="30" fill="#4FC3A1"/>
+    <path d="M286 276 q14 -8 28 6" stroke="#FFFFFF" stroke-width="5" fill="none" stroke-linecap="round" opacity=".65"/>
+  </g>
+
+  <!-- Bolsa de dulces -->
+  <path d="M138 296 h124 l-11 84 a10 10 0 0 1 -10 9 h-82 a10 10 0 0 1 -10 -9 z" fill="url(#bolsa)"/>
+  <path d="M138 296 h124 l-3 22 h-118 z" fill="#C9752C" opacity=".45"/>
+  <rect x="176" y="330" width="48" height="34" rx="5" fill="#FFF6E9" opacity=".55"/>
+
+  <!-- Paleta: palo -->
+  <rect x="195" y="196" width="10" height="112" rx="5" fill="url(#palo)"/>
+
+  <!-- Paleta: cabeza con espiral -->
+  <circle cx="200" cy="157" r="52" fill="#FFFFFF" opacity=".55"/>
+  <circle cx="200" cy="157" r="46" fill="url(#cabezaPaleta)"/>
+  <!-- Espiral: las vueltas van 13 px separadas y el trazo mide 7, así queda
+       franja-hueco-franja. Si el trazo supera la separación, las vueltas se
+       tocan y el círculo se rellena sólido. -->
+  <path
+    d="M200 150.5
+       A 6.5 6.5 0 0 1 200 163.5
+       A 13 13 0 0 1 200 137.5
+       A 19.5 19.5 0 0 1 200 176.5
+       A 26 26 0 0 1 200 124.5
+       A 32.5 32.5 0 0 1 200 189.5
+       A 39 39 0 0 1 200 111.5"
+    fill="none"
+    stroke="#FFF6E9"
+    stroke-width="7"
+    stroke-linecap="round"
+    opacity=".95"/>
+  <ellipse cx="180" cy="132" rx="16" ry="10" fill="#FFFFFF" opacity=".3" transform="rotate(-32 180 132)"/>
+
+  <!-- Gomitas sueltas sobre la bolsa -->
+  <circle cx="152" cy="288" r="13" fill="#FF8FB1"/>
+  <circle cx="152" cy="288" r="6" fill="#FFD3DF" opacity=".7"/>
+  <circle cx="252" cy="284" r="11" fill="#FFC46B"/>
+  <circle cx="252" cy="284" r="5" fill="#FFEBC9" opacity=".7"/>
+</svg>

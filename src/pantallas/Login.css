@@ -1,0 +1,103 @@
+.login {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 18px;
+  padding: 24px 18px;
+}
+
+.login__marca {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.login__marca img {
+  border-radius: 14px;
+  box-shadow: var(--sombra-media);
+}
+
+.login__titulo {
+  margin-top: 6px;
+  font-size: 27px;
+  letter-spacing: -0.5px;
+}
+
+.login__lema {
+  font-size: 13.5px;
+  color: var(--tinta-suave);
+}
+
+.login__form {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.campo__etiqueta {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--tinta-suave);
+}
+
+.campo input {
+  width: 100%;
+  padding: 11px 13px;
+  border: 1.5px solid var(--borde);
+  border-radius: var(--radio);
+  background: var(--crema);
+  font: inherit;
+  font-size: 15px;
+  color: var(--tinta);
+  transition: border-color 0.15s ease;
+}
+
+.campo input:focus {
+  outline: none;
+  border-color: var(--rosa);
+}
+
+.campo input::placeholder {
+  color: #c4aeb4;
+}
+
+.login__error {
+  padding: 9px 11px;
+  border-radius: var(--radio);
+  background: var(--rosa-tenue);
+  color: var(--rosa-oscuro);
+  font-size: 12.5px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.login__enviar {
+  margin-top: 2px;
+}
+
+.login__demo {
+  margin-top: 2px;
+}
+
+/* Una por fila: con tres cuentas y etiquetas de rol, dos columnas parten el
+   texto y el atajo deja de leerse de un vistazo. */
+.login__cuentas {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.login__cuentas .boton {
+  font-size: 12.5px;
+  padding: 9px 12px;
+}

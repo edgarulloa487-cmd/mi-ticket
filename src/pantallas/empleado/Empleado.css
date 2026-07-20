@@ -1,0 +1,443 @@
+/* El personal usa una franja azul y no rosa: en caja, con prisa, tienes que
+   saber de un vistazo si estás en tu panel o en la app de cliente. */
+
+.app--empleado {
+  --acento-emp: #2f6fed;
+  background: #f4f6fb;
+}
+
+.franja-empleado {
+  position: sticky;
+  top: 0;
+  z-index: 9;
+  padding: 7px 16px;
+  background: var(--acento-emp);
+  color: #fff;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-align: center;
+}
+
+.app--empleado .tab--activa {
+  color: var(--acento-emp);
+}
+
+.app--empleado .boton--principal {
+  background: var(--acento-emp);
+  box-shadow: 0 3px 12px rgb(47 111 237 / 0.32);
+}
+
+.app--empleado .boton--suave {
+  background: #e5edfd;
+  color: #1c4bb0;
+}
+
+.app--empleado .boton--suave:hover {
+  background: #d7e3fb;
+}
+
+.app--empleado .tarjeta__titulo svg {
+  color: var(--acento-emp);
+}
+
+.volver-empleado {
+  padding: 9px 16px;
+  background: #2f6fed;
+  color: #fff;
+  font-size: 12.5px;
+  font-weight: 600;
+  text-align: left;
+}
+
+/* --- Cámara --- */
+
+.camara {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: var(--radio-grande);
+  overflow: hidden;
+  background: #101828;
+  display: grid;
+  place-items: center;
+}
+
+.camara video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+}
+
+.camara__apagada {
+  color: #7b8794;
+  font-size: 13px;
+}
+
+.escaner__toggle {
+  width: 100%;
+  margin-top: 12px;
+}
+
+/* --- Formularios del personal --- */
+
+.empleado__ayuda {
+  font-size: 12.5px;
+  color: var(--tinta-suave);
+  margin-bottom: 10px;
+}
+
+.empleado__form {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.empleado__form input {
+  width: 100%;
+  padding: 12px 13px;
+  border: 1.5px solid var(--borde);
+  border-radius: var(--radio);
+  background: var(--crema);
+  font: inherit;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 17px;
+  letter-spacing: 2px;
+  text-align: center;
+  color: var(--tinta);
+}
+
+.empleado__form input:focus {
+  outline: none;
+  border-color: var(--acento-emp);
+}
+
+.validar__campo {
+  font-size: 26px !important;
+  letter-spacing: 7px !important;
+  text-indent: 7px;
+}
+
+/* --- Resultado del escaneo --- */
+
+.resultado {
+  padding: 15px;
+  border-radius: var(--radio-grande);
+  text-align: center;
+  color: #fff;
+  animation: entrar-pantalla 0.25s ease-out;
+}
+
+.resultado--ok {
+  background: linear-gradient(135deg, #2fa96f, #1e7a4e);
+}
+
+.resultado--aviso {
+  background: linear-gradient(135deg, #e8a33d, #c97e1c);
+}
+
+.resultado--mal {
+  background: linear-gradient(135deg, #e2504f, #b62f2e);
+}
+
+.resultado__titulo {
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.resultado__detalle {
+  margin-top: 3px;
+  font-size: 14px;
+  opacity: 0.95;
+}
+
+.resultado__extra {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgb(255 255 255 / 0.28);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+/* --- Equipo --- */
+
+.equipo__sucursal {
+  margin-bottom: 7px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  color: var(--acento-emp);
+}
+
+.equipo {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.equipo__fila {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.equipo__nombre {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.equipo__tu {
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: #e5edfd;
+  color: #1c4bb0;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.equipo__cargo {
+  font-size: 12px;
+  color: var(--tinta-suave);
+}
+
+.equipo__estado {
+  margin-top: 3px;
+  font-size: 11.5px;
+  font-weight: 700;
+}
+
+.equipo__estado--si {
+  color: #1e7a4e;
+}
+
+.equipo__estado--no {
+  color: #b62f2e;
+}
+
+.equipo__accion {
+  flex: none;
+  width: 100%;
+  padding: 9px 12px;
+  font-size: 12.5px;
+  margin-top: 10px;
+}
+
+.equipo__fila .equipo__accion {
+  width: auto;
+  margin-top: 0;
+}
+
+.empleado__aviso {
+  padding: 10px 12px;
+  border-radius: var(--radio);
+  background: #e5edfd;
+  color: #1c4bb0;
+  font-size: 12.5px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.empleado__nota {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--tinta-suave);
+}
+
+.perfil__avatar--empleado {
+  background: linear-gradient(140deg, #6f9bf5, #2f6fed);
+}
+
+/* --- Sub-navegación del panel (Niveles | Equipo) --- */
+
+.panel-nav {
+  display: flex;
+  gap: 4px;
+  margin: 16px 16px 0;
+  padding: 4px;
+  background: #e7ecf6;
+  border-radius: 12px;
+}
+
+.panel-nav__tab {
+  flex: 1;
+  padding: 9px;
+  border-radius: 9px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #5a6b86;
+  transition: all 0.16s ease;
+}
+
+.panel-nav__tab--activa {
+  background: var(--papel);
+  color: var(--acento-emp);
+  box-shadow: var(--sombra-baja);
+}
+
+/* --- Niveles --- */
+
+.niveles {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 16px 16px 26px;
+  animation: entrar-pantalla 0.28s ease-out;
+}
+
+.niveles-lista {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nivel-fila {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+}
+
+.nivel-fila__mini {
+  flex: none;
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--crema);
+}
+
+.nivel-fila__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.nivel-fila__nombre {
+  font-size: 14.5px;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+}
+
+.nivel-fila__orden {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--acento-emp);
+}
+
+.nivel-fila__meta {
+  font-size: 12.5px;
+  color: var(--tinta-suave);
+}
+
+.nivel-fila__acciones {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: none;
+}
+
+.nivel-fila__acciones .boton {
+  padding: 7px 12px;
+  font-size: 12px;
+}
+
+.nivel-fila__quitar {
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #b62f2e;
+  border-radius: var(--radio);
+}
+
+.nivel-fila__quitar:hover {
+  background: #fdecef;
+}
+
+.niveles__nuevo {
+  width: 100%;
+}
+
+/* --- Formulario de nivel --- */
+
+.nivel-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.nivel-form__imagen {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  max-width: 220px;
+  margin: 0 auto;
+  border-radius: var(--radio-grande);
+  overflow: hidden;
+  background: var(--crema);
+  border: 2px dashed #c3d0e6;
+}
+
+.nivel-form__imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.nivel-form__cambiar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 7px;
+  background: rgb(28 20 22 / 0.6);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.tickets-opciones {
+  display: flex;
+  gap: 7px;
+}
+
+.tickets-opcion {
+  flex: 1;
+  padding: 11px 0;
+  border-radius: var(--radio);
+  background: var(--crema);
+  border: 1.5px solid var(--borde);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--tinta-suave);
+  transition: all 0.15s ease;
+}
+
+.tickets-opcion--activa {
+  background: var(--acento-emp);
+  border-color: var(--acento-emp);
+  color: #fff;
+}
+
+.campo__nota {
+  margin-top: 6px;
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: var(--tinta-suave);
+}
+
+.nivel-form__acciones {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}

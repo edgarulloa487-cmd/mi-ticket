@@ -1,0 +1,91 @@
+.mapa {
+  position: relative;
+  height: 210px;
+  border-radius: var(--radio-grande);
+  overflow: hidden;
+  box-shadow: var(--sombra-media);
+  background: #e9e2dd;
+}
+
+.mapa iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.mapa__nota {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: rgb(58 42 46 / 0.72);
+  color: #fff;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  pointer-events: none;
+}
+
+.ubicacion__direccion {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.ubicacion__referencia {
+  margin-top: 3px;
+  font-size: 13.5px;
+  color: var(--tinta-suave);
+}
+
+.ubicacion__acciones {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+  margin-top: 14px;
+}
+
+.horarios {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.horarios__fila {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 0;
+  font-size: 14px;
+  border-bottom: 1px solid var(--borde);
+}
+
+.horarios__fila:last-child {
+  border-bottom: none;
+}
+
+.horarios__horas {
+  color: var(--tinta-suave);
+  font-variant-numeric: tabular-nums;
+}
+
+.horarios__fila--hoy {
+  font-weight: 700;
+  color: var(--rosa);
+}
+
+.horarios__fila--hoy .horarios__horas {
+  color: var(--rosa);
+}
+
+.ubicacion__aviso {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: var(--radio);
+  background: var(--rosa-tenue);
+  color: var(--rosa-oscuro);
+  font-size: 12.5px;
+  font-weight: 600;
+  text-align: center;
+}

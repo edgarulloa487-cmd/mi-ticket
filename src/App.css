@@ -1,0 +1,169 @@
+/* Armazón: móvil primero. En pantallas grandes la app se centra con ancho de
+   teléfono, para que el prototipo se vea como lo que es. */
+
+#root {
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+}
+
+.app {
+  width: 100%;
+  max-width: 430px;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--crema);
+  position: relative;
+}
+
+@media (min-width: 480px) {
+  .app {
+    box-shadow: 0 0 60px rgb(58 42 46 / 0.14);
+  }
+}
+
+.app__vista {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.pantalla {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 16px 16px 26px;
+  animation: entrar-pantalla 0.28s ease-out;
+}
+
+@keyframes entrar-pantalla {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+.cargando {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 40px 24px;
+  min-height: 60dvh;
+  color: var(--tinta-suave);
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Aviso "+1 ticket" cuando el cliente está en otra pestaña. Flota sobre las tabs
+   y se retira solo; tocarlo lleva a Mi ticket. */
+.aviso-ticket {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: calc(var(--alto-tabs) + 12px + env(safe-area-inset-bottom));
+  z-index: 20;
+  padding: 13px 16px;
+  border-radius: var(--radio);
+  background: linear-gradient(135deg, var(--rosa), var(--rosa-oscuro));
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  box-shadow: var(--sombra-alta);
+  animation: subir-aviso 0.3s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+@keyframes subir-aviso {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+/* --- Piezas compartidas --- */
+
+.cabecera {
+  padding: 6px 2px 0;
+}
+
+.cabecera__titulo {
+  font-size: 25px;
+  letter-spacing: -0.4px;
+}
+
+.cabecera__sub {
+  margin-top: 3px;
+  font-size: 13px;
+  color: var(--tinta-suave);
+}
+
+.tarjeta {
+  background: var(--papel);
+  border-radius: var(--radio-grande);
+  padding: 16px;
+  box-shadow: var(--sombra-baja);
+}
+
+.tarjeta__titulo {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 15px;
+  margin-bottom: 9px;
+}
+
+.tarjeta__titulo svg {
+  color: var(--rosa);
+}
+
+.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 11px 14px;
+  border-radius: var(--radio);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    transform 0.12s ease,
+    filter 0.15s ease,
+    background 0.15s ease;
+}
+
+.boton:active {
+  transform: scale(0.97);
+}
+
+.boton--principal {
+  background: var(--rosa);
+  color: #fff;
+  box-shadow: 0 3px 12px rgb(226 62 107 / 0.34);
+}
+
+.boton--principal:hover {
+  filter: brightness(1.06);
+}
+
+.boton--suave {
+  background: var(--rosa-tenue);
+  color: var(--rosa-oscuro);
+}
+
+.boton--suave:hover {
+  background: #ffdbe5;
+}
+
+.boton--texto {
+  align-self: center;
+  color: var(--tinta-suave);
+  font-size: 13px;
+  padding: 8px;
+}
+
+.boton--texto:hover {
+  color: var(--rosa);
+}

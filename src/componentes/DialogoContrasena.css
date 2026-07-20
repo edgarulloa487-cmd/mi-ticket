@@ -1,0 +1,86 @@
+.modal-fondo {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgb(28 20 22 / 0.55);
+  backdrop-filter: blur(3px);
+  animation: fundido 0.16s ease-out;
+}
+
+@keyframes fundido {
+  from {
+    opacity: 0;
+  }
+}
+
+.modal {
+  width: 100%;
+  max-width: 340px;
+  background: var(--papel);
+  border-radius: var(--radio-grande);
+  padding: 20px;
+  box-shadow: var(--sombra-alta);
+  animation: subir-modal 0.2s cubic-bezier(0.34, 1.3, 0.64, 1);
+}
+
+@keyframes subir-modal {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+}
+
+.modal__titulo {
+  font-size: 18px;
+}
+
+.modal__detalle {
+  margin-top: 5px;
+  font-size: 13.5px;
+  color: var(--tinta-suave);
+}
+
+.modal__seguridad {
+  margin-top: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--tinta);
+}
+
+.modal__clave {
+  width: 100%;
+  margin-top: 8px;
+  padding: 12px 13px;
+  border: 1.5px solid var(--borde);
+  border-radius: var(--radio);
+  background: var(--crema);
+  font: inherit;
+  font-size: 16px;
+  color: var(--tinta);
+}
+
+.modal__clave:focus {
+  outline: none;
+  border-color: var(--rosa);
+}
+
+.modal__error {
+  margin-top: 8px;
+  padding: 8px 10px;
+  border-radius: var(--radio);
+  background: #fdecef;
+  color: #b62f2e;
+  font-size: 12.5px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.modal__botones {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 16px;
+}
