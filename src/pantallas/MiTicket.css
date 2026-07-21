@@ -20,9 +20,10 @@
   aspect-ratio: 1;
   border-radius: var(--radio-grande);
   overflow: hidden;
-  background: var(--crema);
+  background: rgb(5 5 26 / 0.65);
   isolation: isolate;
   transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: var(--led-blanco);
 }
 
 .rompecabezas--completo {
@@ -225,19 +226,23 @@
   padding: 10px 12px;
   border-radius: var(--radio);
   background: var(--rosa-tenue);
-  color: var(--rosa-oscuro);
+  color: var(--led-rosa-claro);
+  border: 1px solid rgb(255 78 184 / 0.35);
   font-size: 12.5px;
   font-weight: 600;
 }
 
 .premio__aviso--espera {
-  background: var(--rosa-tenue);
+  background: rgb(255 255 255 / 0.08);
   color: var(--tinta-suave);
+  border-color: rgb(255 255 255 / 0.25);
 }
 
 .premio__aviso--listo {
-  background: var(--negro);
+  background: var(--led-rosa);
   color: #fff;
+  border-color: var(--led-rosa-claro);
+  box-shadow: var(--led-rosa-glow);
 }
 
 .progreso__extra {
@@ -255,10 +260,10 @@
   width: 100%;
   padding: 14px;
   border-radius: var(--radio);
-  background: var(--negro);
+  background: var(--led-rosa);
   color: #fff;
   text-align: center;
-  box-shadow: var(--sombra-media);
+  box-shadow: var(--led-rosa-glow), var(--led-blanco);
 }
 
 .codigo__ayuda {
@@ -362,9 +367,10 @@
 
 .demo {
   padding: 13px;
-  border: 1.5px dashed #d8c4c9;
+  border: 1.5px dashed rgb(255 255 255 / 0.35);
   border-radius: var(--radio);
-  background: rgb(255 255 255 / 0.5);
+  background: rgb(255 255 255 / 0.06);
+  box-shadow: 0 0 16px rgb(255 255 255 / 0.08);
 }
 
 .demo__titulo {

@@ -23,7 +23,12 @@
 .login__titulo {
   margin-top: 6px;
   font-size: 27px;
-  letter-spacing: -0.5px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow:
+    0 0 6px rgb(255 255 255 / 0.4),
+    0 0 14px rgb(255 255 255 / 0.18);
 }
 
 .login__lema {
@@ -52,29 +57,33 @@
 .campo input {
   width: 100%;
   padding: 11px 13px;
-  border: 1.5px solid var(--borde);
+  border: 1.5px solid rgb(255 255 255 / 0.35);
   border-radius: var(--radio);
-  background: var(--crema);
+  background: rgb(5 5 26 / 0.55);
   font: inherit;
   font-size: 15px;
-  color: var(--tinta);
-  transition: border-color 0.15s ease;
+  color: #fff;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 .campo input:focus {
   outline: none;
-  border-color: var(--rosa);
+  border-color: var(--led-rosa-claro);
+  box-shadow: 0 0 14px rgb(255 78 184 / 0.45);
 }
 
 .campo input::placeholder {
-  color: #c4aeb4;
+  color: rgb(255 255 255 / 0.4);
 }
 
 .login__error {
   padding: 9px 11px;
   border-radius: var(--radio);
   background: var(--rosa-tenue);
-  color: var(--rosa-oscuro);
+  color: var(--led-rosa-claro);
+  border: 1px solid rgb(255 78 184 / 0.4);
   font-size: 12.5px;
   font-weight: 600;
   text-align: center;

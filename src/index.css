@@ -1,28 +1,50 @@
 :root {
-  /* Paleta rosa suave: fondo rosado, cartas casi blancas, acentos rosa,
-     botones principales en negro. */
-  /* Botones / chips: rosa más profundo de la misma familia (no negro ni morado). */
-  --negro: #c45a78;
-  --negro-suave: #d47892;
+  /* Tema retro LED: degradado navy→violeta, fucsia #bd167d, morado #29004e.
+     Luces blancas tipo LED en cartas y acentos. */
+  --led-rosa: #bd167d;
+  --led-rosa-claro: #ff4eb8;
+  --led-rosa-oscuro: #8a0f5c;
+  --led-violeta: #29004e;
+  --led-navy: #05051a;
 
-  --rosa: #e891a8;
-  --rosa-oscuro: #d46b88;
-  --rosa-claro: #f3b8c6;
-  --rosa-tenue: #ffe8ef;
+  --negro: var(--led-rosa);
+  --negro-suave: var(--led-rosa-claro);
 
-  --caramelo: #e8a04a;
-  --menta: #3d9b7a;
+  --rosa: var(--led-rosa);
+  --rosa-oscuro: var(--led-rosa-oscuro);
+  --rosa-claro: var(--led-rosa-claro);
+  --rosa-tenue: rgb(189 22 125 / 0.22);
 
-  --crema: #f7e4eb; /* fondo de app: rosa suave */
-  --papel: #ffffff; /* cartas: blanco limpio, sin tinte rosa */
-  --tinta: #1f1a1c;
-  --tinta-suave: #8a7379;
-  --borde: #f0dce3;
+  --caramelo: #ffb84d;
+  --menta: #3ecfbf;
 
-  --sombra-baja:
-    0 2px 4px rgb(60 30 40 / 0.05), 0 6px 16px rgb(60 30 40 / 0.07);
-  --sombra-media: 0 8px 24px rgb(60 30 40 / 0.1);
-  --sombra-alta: 0 16px 40px rgb(60 30 40 / 0.16);
+  --crema: transparent; /* el fondo lo pinta --fondo-app */
+  --papel: rgb(41 0 78 / 0.55);
+  --tinta: #ffffff;
+  --tinta-suave: rgb(255 255 255 / 0.72);
+  --borde: rgb(255 255 255 / 0.28);
+
+  --fondo-app: linear-gradient(
+    180deg,
+    #05051a 0%,
+    #12122e 28%,
+    #29004e 52%,
+    #1a1040 78%,
+    #05051a 100%
+  );
+
+  /* Glow LED blanco (suave) */
+  --led-blanco:
+    0 0 0 1px rgb(255 255 255 / 0.22), 0 0 8px rgb(255 255 255 / 0.16),
+    0 0 16px rgb(255 255 255 / 0.08);
+  --led-rosa-glow:
+    0 0 6px rgb(189 22 125 / 0.45), 0 0 14px rgb(189 22 125 / 0.22);
+
+  --sombra-baja: var(--led-blanco);
+  --sombra-media:
+    var(--led-blanco), 0 10px 24px rgb(0 0 0 / 0.35);
+  --sombra-alta:
+    var(--led-rosa-glow), 0 12px 28px rgb(0 0 0 / 0.4);
 
   --radio: 14px;
   --radio-grande: 22px;
@@ -32,7 +54,7 @@
     sans-serif;
   font-size: 16px;
   color: var(--tinta);
-  color-scheme: light;
+  color-scheme: dark;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -49,7 +71,7 @@
 
 body {
   min-height: 100dvh;
-  background: #efd5df;
+  background: #05051a;
   line-height: 1.45;
 }
 
@@ -76,9 +98,10 @@ h3 {
 }
 
 :focus-visible {
-  outline: 2px solid var(--rosa);
+  outline: 2px solid var(--led-rosa-claro);
   outline-offset: 2px;
   border-radius: 6px;
+  box-shadow: 0 0 12px rgb(255 78 184 / 0.55);
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -16,19 +16,20 @@
   flex: none;
   padding: 7px 14px;
   border-radius: 999px;
-  background: var(--papel);
-  border: 1px solid var(--borde);
+  background: rgb(255 255 255 / 0.06);
+  border: 1px solid rgb(255 255 255 / 0.3);
   font-size: 13px;
   font-weight: 600;
-  color: var(--tinta-suave);
+  color: rgb(255 255 255 / 0.78);
+  box-shadow: 0 0 10px rgb(255 255 255 / 0.08);
   transition: all 0.16s ease;
 }
 
 .chip--activo {
-  background: var(--negro);
-  border-color: var(--negro);
+  background: var(--led-rosa);
+  border-color: var(--led-rosa-claro);
   color: #fff;
-  box-shadow: 0 2px 10px rgb(196 90 120 / 0.32);
+  box-shadow: var(--led-rosa-glow);
 }
 
 .rejilla-productos {
@@ -40,12 +41,48 @@
 }
 
 .producto {
-  background: var(--papel);
-  border-radius: var(--radio-grande);
+  --carta-a: rgb(48 8 88 / 0.72);
+  --carta-b: rgb(28 0 58 / 0.78);
+  position: relative;
   overflow: hidden;
+  isolation: isolate;
+  background: linear-gradient(145deg, var(--carta-a) 0%, var(--carta-b) 100%);
+  border: 1px solid rgb(255 255 255 / 0.28);
+  border-radius: var(--radio-grande);
   box-shadow: var(--sombra-baja);
   display: flex;
   flex-direction: column;
+}
+
+.producto::after {
+  content: '';
+  position: absolute;
+  inset: -20% -40%;
+  z-index: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 38%,
+    rgb(255 255 255 / 0.08) 46%,
+    rgb(255 255 255 / 0.28) 50%,
+    rgb(255 255 255 / 0.08) 54%,
+    transparent 62%
+  );
+  transform: translateX(-130%) skewX(-16deg);
+  pointer-events: none;
+  animation: reflejo-carta 13s ease-in-out infinite;
+  animation-delay: 2.5s;
+}
+
+.producto > * {
+  position: relative;
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .producto::after {
+    animation: none;
+    display: none;
+  }
 }
 
 .producto__imagen {
@@ -92,13 +129,14 @@
   margin-top: 8px;
   font-size: 15px;
   font-weight: 700;
-  color: var(--rosa);
+  color: var(--led-rosa-claro);
   font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 8px rgb(255 78 184 / 0.45);
 }
 
 .productos__pie {
   text-align: center;
   font-size: 12px;
-  color: var(--tinta-suave);
+  color: rgb(255 255 255 / 0.62);
   padding: 2px 8px;
 }

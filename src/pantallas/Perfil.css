@@ -11,11 +11,12 @@
   border-radius: 50%;
   display: grid;
   place-items: center;
-  background: linear-gradient(140deg, var(--negro-suave), var(--negro));
+  background: linear-gradient(140deg, var(--led-rosa-claro), var(--led-rosa));
   color: #fff;
   font-size: 19px;
   font-weight: 700;
   letter-spacing: 0.5px;
+  box-shadow: var(--led-rosa-glow);
 }
 
 .perfil__nombre {
@@ -77,19 +78,57 @@
 }
 
 .cifra {
-  background: var(--papel);
+  --carta-a: rgb(48 8 88 / 0.72);
+  --carta-b: rgb(28 0 58 / 0.78);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: linear-gradient(145deg, var(--carta-a) 0%, var(--carta-b) 100%);
+  border: 1px solid rgb(255 255 255 / 0.28);
   border-radius: var(--radio);
   padding: 12px 6px;
   text-align: center;
-  box-shadow: var(--sombra-baja);
+  box-shadow: var(--led-blanco);
+}
+
+.cifra::after {
+  content: '';
+  position: absolute;
+  inset: -20% -40%;
+  z-index: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 38%,
+    rgb(255 255 255 / 0.08) 46%,
+    rgb(255 255 255 / 0.28) 50%,
+    rgb(255 255 255 / 0.08) 54%,
+    transparent 62%
+  );
+  transform: translateX(-130%) skewX(-16deg);
+  pointer-events: none;
+  animation: reflejo-carta 12s ease-in-out infinite;
+  animation-delay: 4s;
+}
+
+.cifra > * {
+  position: relative;
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cifra::after {
+    animation: none;
+    display: none;
+  }
 }
 
 .cifra__valor {
   display: block;
   font-size: 21px;
   font-weight: 700;
-  color: var(--rosa);
+  color: var(--led-rosa-claro);
   font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 10px rgb(255 78 184 / 0.55);
 }
 
 .cifra__etiqueta {

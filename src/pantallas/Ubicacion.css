@@ -84,7 +84,8 @@
   padding: 10px 12px;
   border-radius: var(--radio);
   background: var(--rosa-tenue);
-  color: var(--rosa-oscuro);
+  color: var(--led-rosa-claro);
+  border: 1px solid rgb(255 78 184 / 0.35);
   font-size: 12.5px;
   font-weight: 600;
   text-align: center;

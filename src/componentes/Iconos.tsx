@@ -21,7 +21,7 @@ export function IconoUbicacion({ activo }: PropsIcono) {
         cx="12"
         cy="10"
         r="2.6"
-        fill={activo ? '#1a1418' : 'none'}
+        fill={activo ? '#0a0618' : 'none'}
         stroke={activo ? 'none' : 'currentColor'}
         strokeWidth="1.8"
       />
@@ -62,7 +62,7 @@ export function IconoTicket({ activo }: PropsIcono) {
       />
       <path
         d="M14 9.2v1.6M14 13.2v1.6"
-        stroke={activo ? '#1a1418' : 'currentColor'}
+        stroke={activo ? '#0a0618' : 'currentColor'}
         strokeWidth="1.8"
         strokeLinecap="round"
       />

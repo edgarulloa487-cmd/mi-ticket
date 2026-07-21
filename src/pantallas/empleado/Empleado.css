@@ -3,7 +3,83 @@
 
 .app--empleado {
   --acento-emp: #2f6fed;
+  --fondo-app: #f4f6fb;
+  --crema: #f4f6fb;
+  --papel: #ffffff;
+  --tinta: #1f2937;
+  --tinta-suave: #7b8794;
+  --borde: #e5eaf3;
+  --rosa: #2f6fed;
+  --rosa-oscuro: #1c4bb0;
+  --rosa-claro: #6f9bf5;
+  --rosa-tenue: #e5edfd;
+  --negro: #2f6fed;
+  --negro-suave: #6f9bf5;
+  --led-rosa: #2f6fed;
+  --led-rosa-claro: #6f9bf5;
+  --led-rosa-oscuro: #1c4bb0;
+  --led-blanco: 0 1px 2px rgb(16 24 40 / 0.06), 0 4px 12px rgb(16 24 40 / 0.06);
+  --led-rosa-glow: 0 3px 12px rgb(47 111 237 / 0.32);
+  --sombra-baja: 0 1px 2px rgb(16 24 40 / 0.06), 0 2px 8px rgb(16 24 40 / 0.05);
+  --sombra-media: 0 4px 16px rgb(16 24 40 / 0.1);
+  --sombra-alta: 0 12px 32px rgb(16 24 40 / 0.16);
   background: #f4f6fb;
+  color-scheme: light;
+  color: var(--tinta);
+  overflow: visible;
+}
+
+.app--empleado .cabecera__titulo {
+  text-transform: none;
+  letter-spacing: -0.4px;
+  color: var(--tinta);
+  text-shadow: none;
+}
+
+.app--empleado .tarjeta {
+  --carta-a: #ffffff;
+  --carta-b: #ffffff;
+  background: #fff;
+  border: 1px solid var(--borde);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: var(--sombra-baja);
+}
+
+.app--empleado .tarjeta::after {
+  display: none;
+  animation: none;
+}
+
+.app--empleado .tarjeta__titulo {
+  color: var(--tinta);
+  text-shadow: none;
+}
+
+.app--empleado .tarjeta__titulo svg {
+  color: var(--acento-emp);
+  filter: none;
+}
+
+.app--empleado .boton--suave {
+  background: #e5edfd;
+  color: #1c4bb0;
+  border: none;
+  box-shadow: none;
+}
+
+.app--empleado .boton--suave:hover {
+  background: #d7e3fb;
+  box-shadow: none;
+}
+
+.app--empleado .boton--texto {
+  color: var(--tinta-suave);
+}
+
+.app--empleado .boton--texto:hover {
+  color: var(--acento-emp);
+  text-shadow: none;
 }
 
 .franja-empleado {

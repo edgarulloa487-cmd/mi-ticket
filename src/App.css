@@ -13,13 +13,17 @@
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  background: var(--crema);
+  background: var(--fondo-app);
   position: relative;
+  overflow: hidden;
 }
 
 @media (min-width: 480px) {
   .app {
-    box-shadow: 0 0 70px rgb(60 30 40 / 0.16);
+    box-shadow:
+      0 0 0 1px rgb(255 255 255 / 0.12),
+      0 0 40px rgb(189 22 125 / 0.25),
+      0 0 80px rgb(41 0 78 / 0.5);
   }
 }
 
@@ -67,11 +71,11 @@
   z-index: 20;
   padding: 13px 16px;
   border-radius: var(--radio);
-  background: var(--negro);
+  background: var(--led-rosa);
   color: #fff;
   font-size: 14px;
   font-weight: 700;
-  box-shadow: var(--sombra-alta);
+  box-shadow: var(--led-rosa-glow), var(--led-blanco);
   animation: subir-aviso 0.3s cubic-bezier(0.34, 1.4, 0.64, 1);
 }
 
@@ -90,7 +94,12 @@
 
 .cabecera__titulo {
   font-size: 25px;
-  letter-spacing: -0.4px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow:
+    0 0 6px rgb(255 255 255 / 0.4),
+    0 0 14px rgb(255 255 255 / 0.18);
 }
 
 .cabecera__sub {
@@ -100,10 +109,69 @@
 }
 
 .tarjeta {
-  background: var(--papel);
+  --carta-a: rgb(48 8 88 / 0.72);
+  --carta-b: rgb(28 0 58 / 0.78);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: linear-gradient(145deg, var(--carta-a) 0%, var(--carta-b) 100%);
+  border: 1px solid rgb(255 255 255 / 0.28);
   border-radius: var(--radio-grande);
   padding: 16px;
   box-shadow: var(--sombra-media);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Reflejo LED que atraviesa la carta de vez en cuando (ciclo largo). */
+.tarjeta::after {
+  content: '';
+  position: absolute;
+  inset: -20% -40%;
+  z-index: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 38%,
+    rgb(255 255 255 / 0.08) 46%,
+    rgb(255 255 255 / 0.28) 50%,
+    rgb(255 255 255 / 0.08) 54%,
+    transparent 62%
+  );
+  transform: translateX(-130%) skewX(-16deg);
+  pointer-events: none;
+  animation: reflejo-carta 11s ease-in-out infinite;
+}
+
+.tarjeta > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes reflejo-carta {
+  0%,
+  78% {
+    transform: translateX(-130%) skewX(-16deg);
+    opacity: 0;
+  }
+  82% {
+    opacity: 1;
+  }
+  90% {
+    transform: translateX(130%) skewX(-16deg);
+    opacity: 0.85;
+  }
+  92%,
+  100% {
+    transform: translateX(130%) skewX(-16deg);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tarjeta::after {
+    animation: none;
+    display: none;
+  }
 }
 
 .tarjeta__titulo {
@@ -112,10 +180,13 @@
   gap: 7px;
   font-size: 15px;
   margin-bottom: 9px;
+  color: #fff;
+  text-shadow: 0 0 6px rgb(255 255 255 / 0.2);
 }
 
 .tarjeta__titulo svg {
-  color: var(--rosa);
+  color: var(--led-rosa-claro);
+  filter: drop-shadow(0 0 4px rgb(255 78 184 / 0.4));
 }
 
 .boton {
@@ -131,7 +202,8 @@
   transition:
     transform 0.12s ease,
     filter 0.15s ease,
-    background 0.15s ease;
+    background 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 .boton:active {
@@ -139,22 +211,26 @@
 }
 
 .boton--principal {
-  background: var(--negro);
+  background: var(--led-rosa);
   color: #fff;
-  box-shadow: 0 4px 14px rgb(196 90 120 / 0.32);
+  box-shadow: var(--led-rosa-glow);
 }
 
 .boton--principal:hover {
-  filter: brightness(1.12);
+  filter: brightness(1.1);
+  box-shadow: var(--led-rosa-glow), var(--led-blanco);
 }
 
 .boton--suave {
-  background: var(--rosa-tenue);
-  color: var(--rosa-oscuro);
+  background: rgb(255 255 255 / 0.08);
+  color: #fff;
+  border: 1px solid rgb(255 255 255 / 0.45);
+  box-shadow: 0 0 12px rgb(255 255 255 / 0.15);
 }
 
 .boton--suave:hover {
-  background: #ffd6e2;
+  background: rgb(255 255 255 / 0.14);
+  box-shadow: var(--led-blanco);
 }
 
 .boton--texto {
@@ -165,5 +241,6 @@
 }
 
 .boton--texto:hover {
-  color: var(--rosa);
+  color: #fff;
+  text-shadow: 0 0 10px rgb(255 255 255 / 0.6);
 }
