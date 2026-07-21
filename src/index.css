@@ -1,20 +1,32 @@
 :root {
-  /* Paleta */
-  --rosa: #e23e6b;
-  --rosa-oscuro: #be2951;
-  --rosa-claro: #ff8fb1;
-  --rosa-tenue: #ffe8ee;
-  --caramelo: #ef8f2e;
-  --menta: #34a98a;
-  --crema: #fff9f2;
-  --papel: #ffffff;
-  --tinta: #3a2a2e;
-  --tinta-suave: #8a7379;
-  --borde: #f2e2e6;
+  /* Paleta tipo amarum: crema + café + oro. Las pantallas ya usan --rosa*:
+     las remapeo al oro (acento) para no tocar cada archivo. El café va en
+     botones principales y en la tinta. */
+  --cafe: #2d1e17;
+  --cafe-oscuro: #1a120e;
+  --oro: #e4a11b;
+  --oro-oscuro: #c4840f;
+  --oro-claro: #f0b93a;
+  --oro-tenue: #fff3d6;
 
-  --sombra-baja: 0 1px 2px rgb(58 42 46 / 0.06), 0 2px 8px rgb(58 42 46 / 0.05);
-  --sombra-media: 0 4px 16px rgb(58 42 46 / 0.1);
-  --sombra-alta: 0 12px 32px rgb(58 42 46 / 0.16);
+  --rosa: var(--oro);
+  --rosa-oscuro: var(--oro-oscuro);
+  --rosa-claro: var(--oro-claro);
+  --rosa-tenue: var(--oro-tenue);
+
+  --caramelo: var(--oro-claro);
+  --menta: #3d9b7a;
+
+  --crema: #fdf8f0;
+  --papel: #ffffff;
+  --tinta: var(--cafe);
+  --tinta-suave: #7a6558;
+  --borde: #eadfce;
+
+  --sombra-baja:
+    0 2px 4px rgb(45 30 23 / 0.06), 0 6px 16px rgb(45 30 23 / 0.08);
+  --sombra-media: 0 8px 24px rgb(45 30 23 / 0.12);
+  --sombra-alta: 0 16px 40px rgb(45 30 23 / 0.18);
 
   --radio: 14px;
   --radio-grande: 22px;
@@ -41,7 +53,7 @@
 
 body {
   min-height: 100dvh;
-  background: #f0e4e7;
+  background: #f0e6d8;
   line-height: 1.45;
 }
 
@@ -68,7 +80,7 @@ h3 {
 }
 
 :focus-visible {
-  outline: 2px solid var(--rosa);
+  outline: 2px solid var(--oro);
   outline-offset: 2px;
   border-radius: 6px;
 }

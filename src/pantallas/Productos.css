@@ -25,10 +25,10 @@
 }
 
 .chip--activo {
-  background: var(--rosa);
-  border-color: var(--rosa);
-  color: #fff;
-  box-shadow: 0 2px 10px rgb(226 62 107 / 0.32);
+  background: var(--cafe);
+  border-color: var(--cafe);
+  color: var(--oro);
+  box-shadow: 0 2px 10px rgb(45 30 23 / 0.28);
 }
 
 .rejilla-productos {

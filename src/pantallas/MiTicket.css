@@ -106,7 +106,7 @@
   }
   50% {
     transform: scale(1.12);
-    box-shadow: 0 6px 20px rgb(226 62 107 / 0.5);
+    box-shadow: 0 6px 20px rgb(228 161 27 / 0.45);
   }
 }
 
@@ -231,13 +231,13 @@
 }
 
 .premio__aviso--espera {
-  background: #f4eef0;
+  background: #f3ebe3;
   color: var(--tinta-suave);
 }
 
 .premio__aviso--listo {
-  background: linear-gradient(90deg, var(--rosa), var(--rosa-oscuro));
-  color: #fff;
+  background: linear-gradient(90deg, var(--cafe), var(--cafe-oscuro));
+  color: var(--oro);
 }
 
 .progreso__extra {
@@ -255,9 +255,10 @@
   width: 100%;
   padding: 14px;
   border-radius: var(--radio);
-  background: linear-gradient(135deg, var(--rosa), var(--rosa-oscuro));
-  color: #fff;
+  background: linear-gradient(135deg, var(--cafe), var(--cafe-oscuro));
+  color: var(--oro);
   text-align: center;
+  box-shadow: var(--sombra-media);
 }
 
 .codigo__ayuda {

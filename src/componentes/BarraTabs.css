@@ -4,9 +4,10 @@
   z-index: 10;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  background: rgb(255 255 255 / 0.92);
+  background: rgb(253 248 240 / 0.96);
   backdrop-filter: blur(12px);
   border-top: 1px solid var(--borde);
+  box-shadow: 0 -6px 20px rgb(45 30 23 / 0.08);
   padding-bottom: env(safe-area-inset-bottom);
 }
 

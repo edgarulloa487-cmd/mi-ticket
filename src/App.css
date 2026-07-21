@@ -19,7 +19,7 @@
 
 @media (min-width: 480px) {
   .app {
-    box-shadow: 0 0 60px rgb(58 42 46 / 0.14);
+    box-shadow: 0 0 70px rgb(45 30 23 / 0.18);
   }
 }
 
@@ -67,8 +67,8 @@
   z-index: 20;
   padding: 13px 16px;
   border-radius: var(--radio);
-  background: linear-gradient(135deg, var(--rosa), var(--rosa-oscuro));
-  color: #fff;
+  background: linear-gradient(135deg, var(--cafe), var(--cafe-oscuro));
+  color: var(--oro);
   font-size: 14px;
   font-weight: 700;
   box-shadow: var(--sombra-alta);
@@ -103,7 +103,7 @@
   background: var(--papel);
   border-radius: var(--radio-grande);
   padding: 16px;
-  box-shadow: var(--sombra-baja);
+  box-shadow: var(--sombra-media);
 }
 
 .tarjeta__titulo {
@@ -139,22 +139,22 @@
 }
 
 .boton--principal {
-  background: var(--rosa);
-  color: #fff;
-  box-shadow: 0 3px 12px rgb(226 62 107 / 0.34);
+  background: var(--cafe);
+  color: var(--oro);
+  box-shadow: 0 4px 14px rgb(45 30 23 / 0.28);
 }
 
 .boton--principal:hover {
-  filter: brightness(1.06);
+  filter: brightness(1.08);
 }
 
 .boton--suave {
-  background: var(--rosa-tenue);
-  color: var(--rosa-oscuro);
+  background: var(--oro-tenue);
+  color: var(--cafe);
 }
 
 .boton--suave:hover {
-  background: #ffdbe5;
+  background: #ffe9b8;
 }
 
 .boton--texto {
