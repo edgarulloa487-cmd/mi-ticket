@@ -1,22 +1,13 @@
-/* Tabs en papel blanco (opacos), encima del contenido. */
 .tabs {
-  position: relative;
-  z-index: 2;
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  flex: none;
-  width: 100%;
-  min-height: var(--alto-tabs);
-  margin-top: 0;
-  padding-top: 14px;
+  background: rgb(255 255 255 / 0.92);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--borde);
   padding-bottom: env(safe-area-inset-bottom);
-  background: #ffffff;
-  border-top: 1px solid rgb(0 0 0 / 0.06);
-  box-shadow: 0 -2px 10px rgb(8 2 26 / 0.08);
-}
-
-.tabs__burbuja {
-  display: none;
 }
 
 .tab {
@@ -65,5 +56,5 @@
   font-weight: 700;
   line-height: 17px;
   text-align: center;
-  box-shadow: 0 0 0 2px #fff;
+  box-shadow: 0 0 0 2px var(--papel);
 }

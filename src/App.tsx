@@ -171,38 +171,36 @@ export default function App() {
         </button>
       )}
 
-      <div className="app__plano">
-        <main className="app__vista">
-          {pestana === 'ubicacion' && (
-            <Ubicacion negocio={negocio} sucursales={sucursales} />
-          )}
-          {pestana === 'productos' && <Productos negocioId={negocio.negocio_id} />}
-          {pestana === 'ticket' && (
-            <MiTicket negocioId={negocio.negocio_id} estado={estado} />
-          )}
-          {pestana === 'perfil' && (
-            <Perfil estado={estado} negocioId={negocio.negocio_id} />
-          )}
-        </main>
-
-        {aviso && (
-          <button
-            className="aviso-ticket"
-            onClick={() => {
-              setPestana('ticket')
-              setAviso(false)
-            }}
-          >
-            🎟️ ¡Ganaste un ticket! Toca para verlo
-          </button>
+      <main className="app__vista">
+        {pestana === 'ubicacion' && (
+          <Ubicacion negocio={negocio} sucursales={sucursales} />
         )}
+        {pestana === 'productos' && <Productos negocioId={negocio.negocio_id} />}
+        {pestana === 'ticket' && (
+          <MiTicket negocioId={negocio.negocio_id} estado={estado} />
+        )}
+        {pestana === 'perfil' && (
+          <Perfil estado={estado} negocioId={negocio.negocio_id} />
+        )}
+      </main>
 
-        <BarraTabs
-          activa={pestana}
-          alCambiar={setPestana}
-          tickets={estado.disponibles}
-        />
-      </div>
+      {aviso && (
+        <button
+          className="aviso-ticket"
+          onClick={() => {
+            setPestana('ticket')
+            setAviso(false)
+          }}
+        >
+          🎟️ ¡Ganaste un ticket! Toca para verlo
+        </button>
+      )}
+
+      <BarraTabs
+        activa={pestana}
+        alCambiar={setPestana}
+        tickets={estado.disponibles}
+      />
     </div>
   )
 }

@@ -24,13 +24,11 @@
   margin-top: 6px;
   font-size: 27px;
   letter-spacing: -0.5px;
-  color: #fff;
-  text-shadow: 0 1px 14px rgb(0 0 0 / 0.28);
 }
 
 .login__lema {
   font-size: 13.5px;
-  color: rgb(255 255 255 / 0.74);
+  color: var(--tinta-suave);
 }
 
 .login__form {
@@ -48,7 +46,7 @@
 .campo__etiqueta {
   font-size: 12.5px;
   font-weight: 600;
-  color: rgb(255 255 255 / 0.8);
+  color: var(--tinta-suave);
 }
 
 .campo input {
@@ -59,8 +57,7 @@
   background: var(--crema);
   font: inherit;
   font-size: 15px;
-  /* Oscuro fijo: la .tarjeta remapea --tinta a blanco para el glass. */
-  color: #2a1a3a;
+  color: var(--tinta);
   transition: border-color 0.15s ease;
 }
 

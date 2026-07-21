@@ -57,7 +57,7 @@ export function Productos({ negocioId }: { negocioId: string }) {
         {visibles.map((p) => {
           const arte = formaDeProducto(p.nombre, p.categoria)
           return (
-            <li key={p.producto_id} className="tarjeta producto">
+            <li key={p.producto_id} className="producto">
               <div
                 className="producto__imagen"
                 style={{
@@ -74,9 +74,9 @@ export function Productos({ negocioId }: { negocioId: string }) {
               </div>
               <div className="producto__cuerpo">
                 <h3 className="producto__nombre">{p.nombre}</h3>
-                <p className="producto__descripcion">
-                  {p.descripcion || '\u00a0'}
-                </p>
+                {p.descripcion && (
+                  <p className="producto__descripcion">{p.descripcion}</p>
+                )}
                 <p className="producto__precio">{precio(p.precio)}</p>
               </div>
             </li>

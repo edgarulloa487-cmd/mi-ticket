@@ -6,24 +6,6 @@
   background: #f4f6fb;
 }
 
-/* El panel de personal sigue en papel claro; anula el glass del cliente. */
-.app--empleado .tarjeta {
-  --glass-bg: #ffffff;
-  --glass-borde: var(--borde);
-  --tinta: #2a1a3a;
-  --tinta-suave: #7c6f88;
-  color: var(--tinta);
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-borde);
-  box-shadow: var(--sombra-baja);
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-}
-
-.app--empleado .tarjeta::before {
-  display: none;
-}
-
 .franja-empleado {
   position: sticky;
   top: 0;
