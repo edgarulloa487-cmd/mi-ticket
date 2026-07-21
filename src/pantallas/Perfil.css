@@ -11,8 +11,8 @@
   border-radius: 50%;
   display: grid;
   place-items: center;
-  background: linear-gradient(140deg, var(--cafe), var(--cafe-oscuro));
-  color: var(--oro);
+  background: linear-gradient(140deg, var(--negro-suave), var(--negro));
+  color: #fff;
   font-size: 19px;
   font-weight: 700;
   letter-spacing: 0.5px;

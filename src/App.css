@@ -19,7 +19,7 @@
 
 @media (min-width: 480px) {
   .app {
-    box-shadow: 0 0 70px rgb(45 30 23 / 0.18);
+    box-shadow: 0 0 70px rgb(60 30 40 / 0.16);
   }
 }
 
@@ -67,8 +67,8 @@
   z-index: 20;
   padding: 13px 16px;
   border-radius: var(--radio);
-  background: linear-gradient(135deg, var(--cafe), var(--cafe-oscuro));
-  color: var(--oro);
+  background: var(--negro);
+  color: #fff;
   font-size: 14px;
   font-weight: 700;
   box-shadow: var(--sombra-alta);
@@ -139,22 +139,22 @@
 }
 
 .boton--principal {
-  background: var(--cafe);
-  color: var(--oro);
-  box-shadow: 0 4px 14px rgb(45 30 23 / 0.28);
+  background: var(--negro);
+  color: #fff;
+  box-shadow: 0 4px 14px rgb(196 90 120 / 0.32);
 }
 
 .boton--principal:hover {
-  filter: brightness(1.08);
+  filter: brightness(1.12);
 }
 
 .boton--suave {
-  background: var(--oro-tenue);
-  color: var(--cafe);
+  background: var(--rosa-tenue);
+  color: var(--rosa-oscuro);
 }
 
 .boton--suave:hover {
-  background: #ffe9b8;
+  background: #ffd6e2;
 }
 
 .boton--texto {

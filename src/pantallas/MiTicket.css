@@ -106,7 +106,7 @@
   }
   50% {
     transform: scale(1.12);
-    box-shadow: 0 6px 20px rgb(228 161 27 / 0.45);
+    box-shadow: 0 6px 20px rgb(232 145 168 / 0.45);
   }
 }
 
@@ -231,13 +231,13 @@
 }
 
 .premio__aviso--espera {
-  background: #f3ebe3;
+  background: var(--rosa-tenue);
   color: var(--tinta-suave);
 }
 
 .premio__aviso--listo {
-  background: linear-gradient(90deg, var(--cafe), var(--cafe-oscuro));
-  color: var(--oro);
+  background: var(--negro);
+  color: #fff;
 }
 
 .progreso__extra {
@@ -255,8 +255,8 @@
   width: 100%;
   padding: 14px;
   border-radius: var(--radio);
-  background: linear-gradient(135deg, var(--cafe), var(--cafe-oscuro));
-  color: var(--oro);
+  background: var(--negro);
+  color: #fff;
   text-align: center;
   box-shadow: var(--sombra-media);
 }

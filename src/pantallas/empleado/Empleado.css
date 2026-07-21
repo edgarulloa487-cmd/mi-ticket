@@ -23,6 +23,20 @@
   color: var(--acento-emp);
 }
 
+.app--empleado .tabs {
+  background: #ffffff;
+  border-top: 1px solid #e5eaf3;
+  box-shadow: 0 -6px 20px rgb(16 24 40 / 0.06);
+}
+
+.app--empleado .tab {
+  color: #7b8794;
+}
+
+.app--empleado .tab__globo {
+  box-shadow: 0 0 0 2px #fff;
+}
+
 .app--empleado .boton--principal {
   background: var(--acento-emp);
   box-shadow: 0 3px 12px rgb(47 111 237 / 0.32);
